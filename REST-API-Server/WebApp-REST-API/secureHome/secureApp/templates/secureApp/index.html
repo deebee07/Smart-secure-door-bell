@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Smart Security Doorbell</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style2.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-target="#navbar" onclick="openNav()">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand" href="#">
+              <img alt="Brand" src="/static/img/logo.png" class="img img-responsive"> 
+            </span>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a data-toggle="modal" data-target="#myModal">Sign in</a></li>
+                 <!--    <li><a href="#">About Us</a></li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title">Member Sign In</h2>
+                </div>
+                <div class="modal-body">
+                    <div>
+
+
+
+                        <form action="/signin" method="post">
+
+                            <div class="form-group form-group-lg">
+                                <label for="username">Username:</label>
+                                <input name="username" id="username" type="text"  class="form-control" autocomplete="off" required>
+                            </div>
+                            <div class="form-group form-group-lg">
+                                <label for="password">Password:</label>
+                                <input type="password" name="password" id="password"  class="form-control" autocomplete="new-password" required>
+                            </div>
+
+                       
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div style="padding-top: 25px" class="form-group form-group-lg">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 text-right">
+
+                            <input type="submit" value="Sign In" class="material-btn material-btn_primary btn btn-lg">
+
+                             </form>
+                               <!--  <button onclick="location.href='/signin';" class="material-btn material-btn_primary btn btn-lg">Sign in</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pimg1">
+        <div class="ptext">
+            <span class="border">
+       Smart Security Doorbell
+      </span>
+        </div>
+    </div>
+    <section class="section section-light">
+        <h2>Make Your Home Safer now.</h2>
+        <p>
+            Make your home safe with this product specially smart enough to talk with alexa, mobile as well as criminal database
+        </p>
+        <button class="material-btn material-btn_primary btn btn-lg" data-toggle="modal" data-target="#myModal">Sign In</button>
+    </section>
+    <div class="pimg2">
+        <div class="container">
+            <div class="ptext2">
+                <span class="border trans">
+        <h2> Features </h2>
+          <ul>
+            <li>Facedetection and Recognition</li>
+            <li>Video streaming</li>
+            <li>Used Alexa to make speakers smart </li>
+            <li>Personalized individual profiles</li>
+            <li>and many more.</li>
+          </ul>
+      </span>
+<!--      FEATURING:
+      Devashish Badlani, Pujan Parikh, Raveen Pereira and Venkata Bharadwaj -->
+            </div>
+        </div>
+
+    </div>
+
+    
+    <script src="/static/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

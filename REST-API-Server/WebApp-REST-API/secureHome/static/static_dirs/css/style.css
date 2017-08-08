@@ -1,0 +1,293 @@
+body, html{
+  height:100%;
+  margin:0;
+  font-size:16px;
+  font-family:"Lato", sans-serif;
+  font-weight:400;
+  line-height:1.8em;
+  color:#666;
+}
+
+.pimg1, .pimg2, .pimg3{
+  position:relative;
+  opacity:0.70;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  /*
+    fixed = parallax
+    scroll = normal
+  */
+  background-attachment:fixed;
+}
+
+.section-light button {
+  min-width: 300px;
+  min-height: 100px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.pimg1{
+  background-image:url('../img/image1.jpg');
+  min-height:100%;
+}
+
+.pimg2{
+  background-image:url('../img/image1.jpg');
+  min-height:600px;
+}
+
+.section{
+  text-align:center;
+  padding:50px 80px;
+}
+
+.section-light{
+  background-color:#f4f4f4;
+  color:#666;
+}
+
+.section-dark{
+  background-color:#282e34;
+  color:#ddd;
+}
+
+.ptext{
+  position:absolute;
+  top:50%;
+  width:100%;
+  text-align:center;
+  color:#000;
+  font-size:27px;
+  letter-spacing:8px;
+  text-transform:uppercase;
+   line-height: 200%;
+}
+
+.ptext2{
+  padding-top: 200px;
+  color:#CCC;
+  font-size:27px;
+  letter-spacing:8px;
+  text-transform:uppercase;
+   line-height: 200%;
+   font-weight: 500;
+}
+
+
+.ptext .border{
+  background-color:#111;
+  color:#fff;
+  padding:20px;
+}
+
+.ptext .border.trans{
+  background-color:transparent;
+}
+
+
+.trans h2{
+  font-weight: bolder;
+}
+
+@media(max-width:568px){
+  .pimg1, .pimg2, .pimg3{
+    background-attachment:scroll;
+  }
+}
+
+
+
+
+
+.sidenav {
+    height: 100vh; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 10000; /* Stay on top */
+    top: 0;
+    left: 0;
+     font-family:"Lato", sans-serif;
+    background-color: #FFF; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    -webkit-box-shadow:  10px 0px 50px 4px rgba(0,0,0,0.2) ;
+    box-shadow:  10px 0px 50px 4px rgba(0,0,0,0.2) ;
+}
+
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 30px;
+    color: #999;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+.navbar {
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.5);
+    padding: 00px 0px;
+}
+
+.navbar-nav button{
+  height: 50px;
+}
+
+
+.modal-body, .modal-title{
+  padding: 20px 50px;
+}
+
+.form-control{
+  border: 0px;
+  box-shadow:  10px 0px 50px 4px rgba(0,0,0,0.2) ;
+}
+
+.modal-content{
+  max-width: 500px;
+}
+
+
+.modal.in .modal-dialog{
+  margin: 100px;
+}
+
+
+.spacer {
+  height: 100px;
+}
+
+.picks button{
+  padding:30px 70px;
+  font-size: 30px;
+  margin:40px 0px;
+}
+
+.heading{
+  padding:0px 30px;
+}
+
+.video-player button {
+  width: 20%;
+  margin-top: 30px;
+
+}
+
+.left-padder{
+  padding: 0px 20px;
+}
+
+.border-between > [class*='col-']:before {
+   background: #e3e3e3;
+   bottom: 0;
+   content: " ";
+   left: 0;
+   position: absolute;
+   width: 1px;
+   top: 0;
+}
+
+.border-between > [class*='col-']:first-child:before {
+   display: none;
+}
+
+.borderclassy{
+   box-shadow:  10px 0px 50px 4px rgba(0,0,0,0.2) ;
+   padding: 20px;
+}
+
+.col-sm-4{
+  padding: 10px;
+}
+
+.padder {
+  margin: 15px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.fixedbottom{
+  margin-top: 200px;
+}

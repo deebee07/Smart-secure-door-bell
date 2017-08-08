@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Smart Security Doorbell</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style2.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  
+    <!-- <meta http-equiv="refresh" content="2"> -->
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="left-padder">
+                  <img height="155px" style=" border-radius: 50%;padding: 10px" src="http://www.freeiconspng.com/uploads/account-profile-icon-2.png">
+        <h2> Jon Doe </h2>
+        
+        </div>
+
+        <hr>
+        <div class="left-padder">
+          <h3 href="#">My History</h3>
+          <h3 href="#">My knowns</h3>
+          <h3 href="#">Video Stream</h3>
+        </div>
+        <hr>
+       <div class="left-padder"> <h3 href="#">Sign out</h3></div>
+
+    </div>
+    <!-- Static navbar -->
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-target="#navbar" onclick="openNav()">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand" href="#">
+              <img alt="Brand" src="/static/img/logo.png" class="img img-responsive"> 
+            </span>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><img height="55px" style="  border-radius: 50%;padding: 10px" src="https://s3-us-west-2.amazonaws.com/deebee07-database/devashish_owner.jpg"></li>
+                      <li class="active" style="height: 100%;vertical-align: baseline;padding: 3px;"><a href="/home">Back</a></li>
+                    <li class="active" style="height: 100%;vertical-align: baseline;padding: 3px;"><a href="/">Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="spacer"></div>
+    <div class="container">
+      <div class="row">
+          <h1 class="heading"> Settings </h1>
+          <hr>
+      </div>
+
+      <div class="row">
+        <div class="row border-between">
+       
+        
+
+            <div class="col-sm-6" align="center">
+                <h3> Stranger </h3>
+                <img height="155px" style="border-radius: 50%;padding: 10px" src="https://s3-us-west-2.amazonaws.com/deebee07-database/test.jpg">
+                <br>
+                
+                <div class="input-field col s8" style="margin-left:80px;">
+                <input  id="first_name" type="text" class="validate" name="username">
+                 <label for="first_name">Enter Name</label>
+                </div>
+                <br>
+                <button class="btn waves-effect waves-light"  name="action" onclick="addme()">
+                   <i class="material-icons right">Add as Acquaintance</i>
+                    </button>
+                
+            </div>
+           
+            
+            <div class="col-sm-6" style="height:300px;">
+            <div style="margin-left:100px;">
+            <h4>Master Switch</h4>
+            <div class="switch" id="switch1" >
+
+             <label>
+          
+             <input type="checkbox" id="chec1">
+            <span class="lever"></span>
+             
+            </label>
+         </div>
+         <br><br><br><br>
+         <h4>Home Owner In or Out</h4>
+          <div class="switch" id="switch2">
+             <label>
+              
+             <input type="checkbox" id="chec2">
+            <span class="lever"></span>
+             
+            </label>
+         </div>
+
+            </div>
+            </div>
+        
+            </div>
+            </div>
+
+
+
+    </div>
+       
+
+
+    <script src="/static/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <script>
+    var a=document.getElementsByClassName('switch');
+    console.log(a);
+    document.getElementById("switch1").addEventListener("mousedown", test1);
+    function test1(e){
+        var final;
+        var x=$("#chec1").is(":checked");
+        if(x==true){
+            final=0;
+            console.log(false)
+        }else{
+
+         console.log(true);
+         final=1;
+     }
+     console.log(JSON.stringify({ Owner: final }));
+        $.ajax({
+            type: "POST",
+            url: "/api/switchinfo/",
+            data: JSON.stringify({ Owner: final }),
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            dataType: "json",
+            success: function(data){console.log(data);},
+            failure: function(errMsg) {
+                console.log(errMsg);
+            }
+        });
+    //console.log(x);
+    }
+    document.getElementById("switch2").addEventListener("mousedown", test2);
+    function test2(e){
+        var x=$("#chec2").is(":checked");
+        var final;
+        if(x==true){
+            final=0;
+
+            console.log(false)
+        }else {
+            final=1;
+            console.log(true);
+          
+
+    }
+     console.log(JSON.stringify({ Owner: final }));
+      $.ajax({
+            type: "POST",
+            url: "/api/please/",
+            data: JSON.stringify({ Owner: final }),
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            dataType: "json",
+            success: function(data){console.log(data);},
+            failure: function(errMsg) {
+                console.log(errMsg);
+            }
+        });
+    
+    console.log(a.value);
+    console.log($('#switch2').checked);
+}
+function addme(){
+    console.log("reached");
+    var x=document.getElementById('first_name').value;
+
+    console.log(JSON.stringify({ Owner: x }));
+    $.ajax({
+            type: "POST",
+            url: "/api/addtodatabase/",
+            data: JSON.stringify({ Owner: x }),
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            dataType: "json",
+            success: function(data){console.log(data);},
+            failure: function(errMsg) {
+                console.log(errMsg);
+            }
+        });
+}
+
+    </script>
+</body>
+
+</html>

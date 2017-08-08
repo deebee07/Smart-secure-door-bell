@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Smart Security Doorbell</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style2.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.js"></script>
+
+
+
+
+</head>
+
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="left-padder">
+                  <img height="155px" style=" border-radius: 50%;padding: 10px" src="http://www.freeiconspng.com/uploads/account-profile-icon-2.png">
+        <h2> Devashish </h2>
+        
+        </div>
+       
+        
+        <hr>
+        <div class="left-padder">
+          <h3 href="#">My History</h3>
+          <h3 href="/myrel/">My knowns</h3>
+          <h3 href="#">Video Stream</h3>
+        </div>
+        <hr>
+       <div class="left-padder"> <h3 href="#">Sign out</h3></div>
+
+    </div>
+    <!-- Static navbar -->
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-target="#navbar" onclick="openNav()">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand" href="#">
+              <img alt="Brand" src="/static/img/logo.png" class="img img-responsive"> 
+            </span>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><img height="55px" style="  border-radius: 50%;padding: 10px" src="https://s3-us-west-2.amazonaws.com/deebee07-database/devashish_owner.jpg"></li>
+                    <li class="active" style="height: 100%;vertical-align: baseline;padding: 3px;"><a href="/">Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="spacer"></div>
+    <div class="container">
+      <div class="row">
+          <h1 class="heading"> Devashish's Dashboard </h1>
+          <hr>
+      </div>
+  
+      <div class="row border-between">
+
+        <div class="col-sm-6">
+
+
+<div id="chart"></div>
+
+<input id="btnExport" type="button" value="Export" />
+
+
+        </div>
+
+        <div class="col-sm-6 video-player" align="center">  <h3> Live Stream </h3>
+
+        <div id='wowza_player'></div>
+<script id='player_embed' src='//player.cloud.wowza.com/hosted/d4gzmm8j/wowza.js' type='text/javascript'></script>
+
+    <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <hr>
+
+    <div class="row picks" align="center">
+      <div class="col-sm-4"><button class="material-btn material-btn_primary btn btn-lg" onclick="location.href='/myrel';">My Relatives</button></div>
+      <div class="col-sm-4"><button class="material-btn material-btn_primary btn btn-lg" onclick="location.href='/history';">Guest History</button></div>
+      <div class="col-sm-4"><button class="material-btn material-btn_primary btn btn-lg" onclick="location.href='/settings';">Settings</button></div>
+    </div>
+
+    </div>
+      
+        <script type="text/javascript">
+$(function() {
+    $('#chart').highcharts({
+        chart: {
+            type: 'bar',
+            spacingBottom: 0,
+            spacingTop: 0,
+            spacingLeft: 0,
+            spacingRight: 0
+        },
+        exporting: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: null
+        },
+        xAxis: {
+            categories: ["May", "June", "July"],
+            labels: {
+                style: {
+                    color: '#000'
+                },
+                min: 0,
+                step: 1
+            }
+        },
+        yAxis: {
+            title: {
+                text: null
+            },
+            labels: {
+                overflow: 'justify',
+                style: {
+                    color: '#000'
+                }
+            }
+        },
+        plotOptions: {
+            series: {
+                stacking: 'normal'
+            }
+        },
+        tooltip: {
+            valueSuffix: '%'
+        },
+        series: [{
+            name: 'Raveen',
+            color: '#c0504d',
+            data: [10,20,25]
+        },{
+             name: 'Others',
+            color: '#0000FF',
+            data: [15,30,25]
+
+        }]
+    });
+    
+    $('#btnExport').click(function(){
+        graphExport();
+    });
+});
+
+function graphExport() {
+    var doc = new jsPDF();
+
+    if ($('#chart').length > 0) {
+        var chartSVG = $('#chart').highcharts().getSVG(),
+            chartImg = new Image();
+
+        chartImg.onload = function () {
+            var chartCanvas = document.createElement("canvas");
+
+            chartCanvas.width = 600;
+            chartCanvas.height = 400;
+            chartCanvas.getContext("2d").drawImage(chartImg, 0, 0, 600, 400);
+
+            var chartImgData = chartCanvas.toDataURL("image/jpeg");
+
+            doc.addImage(chartImgData, 'JPEG', 0, 0, 200, 100);
+            
+            doc.save('test.pdf');
+        }
+
+        chartImg.src = "data:image/svg+xml;base64," + window.btoa(unescape(encodeURIComponent(chartSVG)));
+
+    }
+};
+        </script>
+  
+    <script src="/static/js/script.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

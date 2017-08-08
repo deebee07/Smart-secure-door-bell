@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Smart Security Doorbell</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style2.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="left-padder">
+                  <img height="155px" style=" border-radius: 50%;padding: 10px" src="http://www.freeiconspng.com/uploads/account-profile-icon-2.png">
+        <h2> Jon Doe </h2>
+        
+        </div>
+
+        <hr>
+        <div class="left-padder">
+          <h3 href="#">My History</h3>
+          <h3 href="#">My knowns</h3>
+          <h3 href="#">Video Stream</h3>
+        </div>
+        <hr>
+       <div class="left-padder"> <h3 href="/signup">Sign out</h3></div>
+
+    </div>
+    <!-- Static navbar -->
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-target="#navbar" onclick="openNav()">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand" href="#">
+              <img alt="Brand" src="/static/img/logo.png" class="img img-responsive"> 
+            </span>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><img height="55px" style="  border-radius: 50%;padding: 10px" src="https://s3-us-west-2.amazonaws.com/deebee07-database/devashish_owner.jpg"></li>
+                     <li class="active" style="height: 100%;vertical-align: baseline;padding: 3px;"><a href="/home">Back</a></li>
+                    <li class="active" style="height: 100%;vertical-align: baseline;padding: 3px;"><a href="/">Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="spacer"></div>
+    <div class="container">
+      <div class="row">
+          <h1 class="heading"> History </h1>
+          <hr>
+      </div>
+
+
+            <div class="row borderclassy padder" id="pic1">
+                <div class="col-sm-6" align="center">
+                    <h3 id="name1"> Stranger</h3>
+                    <img id ="img1"height="155px" style="border-radius: 50%;padding: 10px" src="http://www.freeiconspng.com/uploads/account-profile-icon-2.png">
+                </div>
+                <div class="col-sm-6" align="left">
+
+                    <h3>Details:</h3><h4> <ul><br><li id="time1">time taken: august 1 2017</li></ul></h4>
+                    
+                </div>
+            </div> 
+            <div class="row borderclassy padder" id="pic2">
+                <div class="col-sm-6" align="center">
+                    <h3 id="name2"> Relative</h3>
+                    <img id ="img2" height="155px" style="border-radius: 50%;padding: 10px" src="http://www.freeiconspng.com/uploads/account-profile-icon-2.png">
+                </div>
+                <div class="col-sm-6" align="left">
+
+                    <h3>Details:</h3><h4> <ul><br><li id="time2">time taken: august 1 2017</li></ul></h4>
+                    
+                </div>
+            </div>
+            <div class="row borderclassy padder" id="pic3">
+                <div class="col-sm-6" align="center">
+                    <h3 id="name3"> Relative</h3>
+                    <img id ="img3"height="155px" style="border-radius: 50%;padding: 10px" src="http://www.freeiconspng.com/uploads/account-profile-icon-2.png">
+                </div>
+                <div class="col-sm-6" align="left">
+
+                    <h3>Details:</h3><h4> <ul><br><li id="time3">time taken: august 1 2017</li></ul></h4>
+                    
+                </div>
+            </div>
+            <div class="row borderclassy padder" id="pic4">
+                <div class="col-sm-6" align="center">
+                    <h3 id="name4"> Relative</h3>
+                    <img id ="img4" height="155px" style="border-radius: 50%;padding: 10px" src="http://www.freeiconspng.com/uploads/account-profile-icon-2.png">
+                </div>
+                <div class="col-sm-6" align="left">
+
+                    <h3>Details:</h3><h4> <ul><br><li id="time4">time taken: august 1 2017</li></ul></h4>
+                    
+                </div>
+            </div>
+
+
+
+
+    </div>
+       
+
+    <script src="/static/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+    $.ajax({
+            type: "POST",
+            url: "/api/gethistory/",
+            data: JSON.stringify({ "Owner": "hi" }),
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            dataType: "json",
+            success: function(data)
+            {console.log(data);
+                document.getElementById('img1').src=data[0];
+                document.getElementById('img2').src=data[1];
+                document.getElementById('img3').src=data[2];
+                document.getElementById('img4').src=data[3];
+                document.getElementById('time1').innerHTML=data[0].substring(52,60);
+                document.getElementById('time2').innerHTML=data[1].substring(52,60);
+                document.getElementById('time3').innerHTML=data[2].substring(52,60);
+                document.getElementById('time4').innerHTML=data[3].substring(52,60);
+
+                for(var i=0;i<data.length;i++){
+            var j=i+1;
+             document.getElementById('img'+j).src=data[i];
+
+             var date=data[0].substring(52,60);
+             document.getElementById('date'+j).innerHTML=date;
+                }
+            },
+            failure: function(errMsg) {
+                console.log(errMsg);
+            }
+        });
+    </script>
+</body>
+
+</html>
